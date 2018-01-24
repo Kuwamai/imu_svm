@@ -5,7 +5,6 @@ ros.on('error', function(error) {console.log('websocket error: ', error); });
 ros.on('close', function() {console.log('websocket: closed');});
 
 var data = [{
-	//x: ['forward', 'crash', 'turn_l', 'turn_r', 'stop'],
 	y: [],
 	type: 'lines',
 	line: {color: '#80CAF6'},
@@ -33,7 +32,7 @@ var data = [{
 }];
 
 var options = {
-	title: 'state probability'
+	title: 'State probability'
 };
 
 Plotly.newPlot('graph', data, options);
@@ -52,9 +51,11 @@ array[3] = [];
 array[4] = [];
 
 ls.subscribe(function(message) {
-	str = JSON.stringify(message);
+	var arr = [message.forward, message.crash, message.turn_l, message.turn_r, message.stop];
+
+	str = JSON.stringify(arr.indexOf(Math.max.apply(null,arr) ));
 	document.getElementById("state_proba").innerHTML = str;
-	console.log(str);
+	console.log(Math.max(message.forward, message.crash, message.turn_l, message.turn_r, message.stop));
 
 	array[0].push(message.forward);
 	array[1].push(message.crash);
