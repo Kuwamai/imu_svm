@@ -11,6 +11,7 @@ from sklearn import svm
 import sklearn
 from sklearn.decomposition import PCA
 from sklearn.externals import joblib
+from pathlib import Path
 
 class Svm_pub:
 	def __init__(self):
@@ -19,9 +20,10 @@ class Svm_pub:
 		self.m = 5
 		self.d = 6
 		self.feature_num = 17
-		
-		self.clf = joblib.load('svc.pkl.cmp')
-		self.pca = joblib.load('pca.pkl.cmp')
+		p_svc = Path('./svc.pkl.cmp')
+		p_pca = Path('./pca.pkl.cmp')
+		self.clf = joblib.load(p_svc)
+		self.pca = joblib.load(p_pca)
 
 		self.a_x = np.zeros((1, self.m))
 		self.a_y = np.zeros((1, self.m))
