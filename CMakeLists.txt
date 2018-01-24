@@ -45,11 +45,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+  FILES
+  state_proba.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -104,7 +103,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES imu_svm
-#  CATKIN_DEPENDS message_generation rospy sensor_msgs std_msgs
+#  CATKIN_DEPENDS message_generation rospy sensor_msgs std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
